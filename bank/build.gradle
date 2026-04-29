@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.0.6'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'jacoco'
 }
 
 group = 'com.banco'
@@ -33,4 +34,65 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy tasks.named('jacocoTestReport')
+}
+
+jacoco {
+	toolVersion = '0.8.12'
+}
+
+tasks.named('jacocoTestReport') {
+	dependsOn tasks.named('test')
+	reports {
+		xml.required = true
+		csv.required = true
+		html.required = true
+	}
+}
+
+tasks.named('jacocoTestCoverageVerification') {
+	dependsOn tasks.named('test')
+	classDirectories.setFrom(files(sourceSets.main.output.asFileTree.matching {
+		include 'com/banco/bank/application/usecase/SincronizarClienteUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/CrearCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ObtenerCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ListarCuentasClienteUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ActualizarCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ActualizarParcialCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/EliminarCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/CrearMovimientoUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ObtenerMovimientoUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ListarMovimientosCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ActualizarMovimientoUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ActualizarParcialMovimientoUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/EliminarMovimientoUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ObtenerEstadoCuentaUseCaseImpl*'
+		include 'com/banco/bank/infrastructure/messaging/in/ClienteEventConsumerAdapter*'
+		include 'com/banco/bank/infrastructure/persistence/ClienteRepositoryAdapter*'
+		include 'com/banco/bank/infrastructure/persistence/CuentaRepositoryAdapter*'
+		include 'com/banco/bank/infrastructure/persistence/MovimientoRepositoryAdapter*'
+		include 'com/banco/bank/infrastructure/persistence/ReporteRepositoryAdapter*'
+		include 'com/banco/bank/infrastructure/web/CuentaController*'
+		include 'com/banco/bank/infrastructure/web/MovimientoController*'
+		include 'com/banco/bank/infrastructure/web/ReporteController*'
+		include 'com/banco/bank/infrastructure/web/dto/EstadoCuentaReporteDTO*'
+		include 'com/banco/bank/infrastructure/config/RabbitMQConfig*'
+		include 'com/banco/bank/domain/model/events/ClienteEvent*'
+		include 'com/banco/bank/domain/model/Cliente*'
+		include 'com/banco/bank/domain/model/Cuenta*'
+		include 'com/banco/bank/domain/model/TipoCuentaEnum*'
+		include 'com/banco/bank/domain/model/Movimiento*'
+		include 'com/banco/bank/domain/model/TipoMovimientoEnum*'
+		include 'com/banco/bank/domain/model/reporte/EstadoCuentaReporte*'
+	}))
+	violationRules {
+		rule {
+			element = 'BUNDLE'
+			limit {
+				counter = 'INSTRUCTION'
+				value = 'COVEREDRATIO'
+				minimum = 0.80
+			}
+		}
+	}
 }
