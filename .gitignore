@@ -4,6 +4,8 @@ build/
 .github/
 .env
 test_data.sql
+docs/
+README.md
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
