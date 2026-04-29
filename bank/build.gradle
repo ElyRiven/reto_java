@@ -54,11 +54,21 @@ tasks.named('jacocoTestCoverageVerification') {
 	dependsOn tasks.named('test')
 	classDirectories.setFrom(files(sourceSets.main.output.asFileTree.matching {
 		include 'com/banco/bank/application/usecase/SincronizarClienteUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/CrearCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ObtenerCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ListarCuentasClienteUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ActualizarCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ActualizarParcialCuentaUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/EliminarCuentaUseCaseImpl*'
 		include 'com/banco/bank/infrastructure/messaging/in/ClienteEventConsumerAdapter*'
 		include 'com/banco/bank/infrastructure/persistence/ClienteRepositoryAdapter*'
+		include 'com/banco/bank/infrastructure/persistence/CuentaRepositoryAdapter*'
+		include 'com/banco/bank/infrastructure/web/CuentaController*'
 		include 'com/banco/bank/infrastructure/config/RabbitMQConfig*'
 		include 'com/banco/bank/domain/model/events/ClienteEvent*'
 		include 'com/banco/bank/domain/model/Cliente*'
+		include 'com/banco/bank/domain/model/Cuenta*'
+		include 'com/banco/bank/domain/model/TipoCuentaEnum*'
 	}))
 	violationRules {
 		rule {
