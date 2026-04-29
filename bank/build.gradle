@@ -66,12 +66,16 @@ tasks.named('jacocoTestCoverageVerification') {
 		include 'com/banco/bank/application/usecase/ActualizarMovimientoUseCaseImpl*'
 		include 'com/banco/bank/application/usecase/ActualizarParcialMovimientoUseCaseImpl*'
 		include 'com/banco/bank/application/usecase/EliminarMovimientoUseCaseImpl*'
+		include 'com/banco/bank/application/usecase/ObtenerEstadoCuentaUseCaseImpl*'
 		include 'com/banco/bank/infrastructure/messaging/in/ClienteEventConsumerAdapter*'
 		include 'com/banco/bank/infrastructure/persistence/ClienteRepositoryAdapter*'
 		include 'com/banco/bank/infrastructure/persistence/CuentaRepositoryAdapter*'
 		include 'com/banco/bank/infrastructure/persistence/MovimientoRepositoryAdapter*'
+		include 'com/banco/bank/infrastructure/persistence/ReporteRepositoryAdapter*'
 		include 'com/banco/bank/infrastructure/web/CuentaController*'
 		include 'com/banco/bank/infrastructure/web/MovimientoController*'
+		include 'com/banco/bank/infrastructure/web/ReporteController*'
+		include 'com/banco/bank/infrastructure/web/dto/EstadoCuentaReporteDTO*'
 		include 'com/banco/bank/infrastructure/config/RabbitMQConfig*'
 		include 'com/banco/bank/domain/model/events/ClienteEvent*'
 		include 'com/banco/bank/domain/model/Cliente*'
@@ -79,6 +83,7 @@ tasks.named('jacocoTestCoverageVerification') {
 		include 'com/banco/bank/domain/model/TipoCuentaEnum*'
 		include 'com/banco/bank/domain/model/Movimiento*'
 		include 'com/banco/bank/domain/model/TipoMovimientoEnum*'
+		include 'com/banco/bank/domain/model/reporte/EstadoCuentaReporte*'
 	}))
 	violationRules {
 		rule {
