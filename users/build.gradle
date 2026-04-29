@@ -55,9 +55,14 @@ tasks.named('jacocoTestCoverageVerification') {
 	classDirectories.setFrom(files(sourceSets.main.output.asFileTree.matching {
 		include 'com/banco/users/application/usecase/*Cliente*'
 		include 'com/banco/users/application/usecase/PatchClienteCommand*'
+		include 'com/banco/users/application/usecase/*Persona*'
+		include 'com/banco/users/application/usecase/PatchPersonaCommand*'
 		include 'com/banco/users/infrastructure/persistence/ClienteRepositoryAdapter*'
+		include 'com/banco/users/infrastructure/persistence/PersonaRepositoryAdapter*'
 		include 'com/banco/users/infrastructure/web/ClienteController*'
+		include 'com/banco/users/infrastructure/web/PersonaController*'
 		include 'com/banco/users/domain/model/Cliente*'
+		include 'com/banco/users/domain/model/Persona*'
 	}))
 	violationRules {
 		rule {
