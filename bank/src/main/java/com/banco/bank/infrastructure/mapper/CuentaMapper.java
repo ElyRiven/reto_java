@@ -29,6 +29,7 @@ public class CuentaMapper {
     public Cuenta toDomain(CuentaEntity entity) {
         var cuenta = new Cuenta();
         cuenta.setCuentaId(entity.getCuentaId());
+        cuenta.setClienteId(entity.getClienteId());
         if (entity.getCliente() != null) {
             cuenta.setCliente(clienteMapper.toDomain(entity.getCliente()));
         }
