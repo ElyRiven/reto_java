@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.0.6'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'jacoco'
 }
 
 group = 'com.banco'
@@ -33,4 +34,40 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy tasks.named('jacocoTestReport')
+}
+
+jacoco {
+	toolVersion = '0.8.12'
+}
+
+tasks.named('jacocoTestReport') {
+	dependsOn tasks.named('test')
+	reports {
+		xml.required = true
+		csv.required = true
+		html.required = true
+	}
+}
+
+tasks.named('jacocoTestCoverageVerification') {
+	dependsOn tasks.named('test')
+	classDirectories.setFrom(files(sourceSets.main.output.asFileTree.matching {
+		include 'com/banco/bank/application/usecase/SincronizarClienteUseCaseImpl*'
+		include 'com/banco/bank/infrastructure/messaging/in/ClienteEventConsumerAdapter*'
+		include 'com/banco/bank/infrastructure/persistence/ClienteRepositoryAdapter*'
+		include 'com/banco/bank/infrastructure/config/RabbitMQConfig*'
+		include 'com/banco/bank/domain/model/events/ClienteEvent*'
+		include 'com/banco/bank/domain/model/Cliente*'
+	}))
+	violationRules {
+		rule {
+			element = 'BUNDLE'
+			limit {
+				counter = 'INSTRUCTION'
+				value = 'COVEREDRATIO'
+				minimum = 0.80
+			}
+		}
+	}
 }
