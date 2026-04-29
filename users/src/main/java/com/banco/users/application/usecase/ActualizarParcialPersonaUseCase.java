@@ -4,7 +4,7 @@ import com.banco.users.domain.model.Persona;
 
 import java.util.UUID;
 
-public interface ConsultarPersonaUseCase {
+public interface ActualizarParcialPersonaUseCase {
 
-    Persona execute(UUID id);
+    Persona execute(UUID id, PatchPersonaCommand command);
 }

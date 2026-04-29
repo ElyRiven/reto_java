@@ -21,4 +21,5 @@ public class Persona {
     private String telefono;
     private Instant createdAt;
     private Instant updatedAt;
+    private Instant deletedAt;
 }

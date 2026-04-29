@@ -12,5 +12,6 @@ public record PersonaResponseDTO(
         String direccion,
         String telefono,
         Instant createdAt,
-        Instant updatedAt
+        Instant updatedAt,
+        Instant deletedAt
 ) {}
