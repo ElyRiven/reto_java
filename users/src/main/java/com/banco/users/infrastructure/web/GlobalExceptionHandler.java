@@ -1,5 +1,7 @@
 package com.banco.users.infrastructure.web;
 
+import com.banco.users.domain.exception.ClienteNoEncontradoException;
+import com.banco.users.domain.exception.ClienteYaExisteException;
 import com.banco.users.domain.exception.PersonaNotFoundException;
 import com.banco.users.domain.exception.PersonaYaExisteException;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PersonaYaExisteException.class)
     public ResponseEntity<Map<String, Object>> handlePersonaYaExiste(PersonaYaExisteException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorBody(ex.getMessage()));
+    }
+
+    @ExceptionHandler(ClienteNoEncontradoException.class)
+    public ResponseEntity<Map<String, Object>> handleClienteNotFound(ClienteNoEncontradoException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorBody(ex.getMessage()));
+    }
+
+    @ExceptionHandler(ClienteYaExisteException.class)
+    public ResponseEntity<Map<String, Object>> handleClienteYaExiste(ClienteYaExisteException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorBody(ex.getMessage()));
     }
 
