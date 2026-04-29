@@ -3,16 +3,20 @@ package com.banco.users.application.usecase;
 import com.banco.users.domain.exception.ClienteYaExisteException;
 import com.banco.users.domain.exception.PersonaNotFoundException;
 import com.banco.users.domain.model.Cliente;
+import com.banco.users.domain.model.events.ClienteEvent;
+import com.banco.users.domain.port.out.ClienteEventProducerPort;
 import com.banco.users.domain.port.out.ClienteRepositoryPort;
 import com.banco.users.domain.port.out.PersonaRepositoryPort;
 import com.fasterxml.uuid.Generators;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CrearClienteUseCaseImpl implements CrearClienteUseCase {
@@ -20,6 +24,7 @@ public class CrearClienteUseCaseImpl implements CrearClienteUseCase {
     private final ClienteRepositoryPort clienteRepositoryPort;
     private final PersonaRepositoryPort personaRepositoryPort;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final ClienteEventProducerPort eventProducerPort;
 
     @Override
     public Cliente execute(UUID personaId, String contrasena, Boolean estado) {
@@ -45,6 +50,22 @@ public class CrearClienteUseCaseImpl implements CrearClienteUseCase {
         cliente.setEstado(estado);
         cliente.setCreatedAt(Instant.now());
 
-        return clienteRepositoryPort.save(cliente);
+        var saved = clienteRepositoryPort.save(cliente);
+
+        try {
+            var metadata = new ClienteEvent.Metadata(
+                    Generators.timeBasedEpochGenerator().generate().toString(),
+                    Instant.now(),
+                    "1.0"
+            );
+            var payload = new ClienteEvent.Payload(
+                    saved.getClienteId(), saved.getNombre(), saved.getEstado(), "CREATE_OR_UPDATE"
+            );
+            eventProducerPort.publish(new ClienteEvent(metadata, payload));
+        } catch (Exception e) {
+            log.warn("Error al publicar evento de creación clienteId={}: {}", saved.getClienteId(), e.getMessage());
+        }
+
+        return saved;
     }
 }
