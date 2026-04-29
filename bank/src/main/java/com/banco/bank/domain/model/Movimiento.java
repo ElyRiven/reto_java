@@ -11,15 +11,14 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Cuenta {
+public class Movimiento {
 
-    private UUID cuentaId;
-    private UUID clienteId;
-    private Cliente cliente;
-    private String numeroCuenta;
-    private String tipoCuenta;
-    private BigDecimal saldoInicial;
-    private Boolean estado;
+    private UUID movimientoId;
+    private Cuenta cuenta;
+    private Instant fecha;
+    private String tipoMovimiento;
+    private BigDecimal valor;
+    private BigDecimal saldo;
     private Instant createdAt;
     private Instant updatedAt;
     private Instant deletedAt;
