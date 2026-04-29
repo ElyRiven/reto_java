@@ -9,4 +9,8 @@ import java.util.UUID;
 public interface PersonaJpaRepository extends JpaRepository<PersonaEntity, UUID> {
 
     Optional<PersonaEntity> findByIdentificacion(String identificacion);
+
+    Optional<PersonaEntity> findByIdentificacionAndDeletedAtIsNull(String identificacion);
+
+    Optional<PersonaEntity> findByIdAndDeletedAtIsNull(UUID id);
 }
