@@ -19,6 +19,7 @@ public class PersonaMapper {
         entity.setTelefono(persona.getTelefono());
         entity.setCreatedAt(persona.getCreatedAt());
         entity.setUpdatedAt(persona.getUpdatedAt());
+        entity.setDeletedAt(persona.getDeletedAt());
         return entity;
     }
 
@@ -33,6 +34,7 @@ public class PersonaMapper {
         persona.setTelefono(entity.getTelefono());
         persona.setCreatedAt(entity.getCreatedAt());
         persona.setUpdatedAt(entity.getUpdatedAt());
+        persona.setDeletedAt(entity.getDeletedAt());
         return persona;
     }
 
@@ -46,7 +48,8 @@ public class PersonaMapper {
                 persona.getDireccion(),
                 persona.getTelefono(),
                 persona.getCreatedAt(),
-                persona.getUpdatedAt()
+                persona.getUpdatedAt(),
+                persona.getDeletedAt()
         );
     }
 }
