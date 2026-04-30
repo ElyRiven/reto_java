@@ -1,0 +1,739 @@
+{
+  "info": {
+    "_postman_id": "467ef71f-bc9c-4645-bebe-89e20e502321",
+    "name": "reto java",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44294794"
+  },
+  "item": [
+    {
+      "name": "Personas",
+      "item": [
+        {
+          "name": "Registrar Persona",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Elizabeth Tamayo\",\r\n  \"genero\": \"F\",\r\n  \"edad\": 20,\r\n  \"identificacion\": \"1002003000\",\r\n  \"direccion\": \"Calle 123\",\r\n  \"telefono\": \"555-1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{USERS_API}}{{PERSONAS_ENDPOINT}}",
+              "host": [
+                "{{USERS_API}}{{PERSONAS_ENDPOINT}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar Persona por ID",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{USERS_API}}{{PERSONAS_ENDPOINT}}/:id",
+              "host": [
+                "{{USERS_API}}{{PERSONAS_ENDPOINT}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "b1a7e1e0-1a2b-4c3d-8e9f-000000000030"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Persona",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n//   \"nombre\": \"Karina Cifuentes\",\r\n//   \"genero\": \"F\",\r\n//   \"edad\": 33,\r\n//   \"identificacion\": \"123456789\",\r\n//   \"direccion\": \"Calle Actualizada\",\r\n//   \"telefono\": \"555-9999\"\r\n//   \"created_at\": \"2026-04-28 21:09:50.718 -0500\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{USERS_API}}{{PERSONAS_ENDPOINT}}/:id",
+              "host": [
+                "{{USERS_API}}{{PERSONAS_ENDPOINT}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "b1a7e1e0-1a2b-4c3d-8e9f-000000000028"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Parcialmente Persona",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n//   \"nombre\": \"Alejandro VARGAS\",\r\n//   \"genero\": \"M\"\r\n//   \"edad\": 99,\r\n//   \"identificacion\": \"123456789\",\r\n//   \"direccion\": \"Calle Actualizada Sola\",\r\n//   \"telefono\": \"555-9999\"\r\n//   \"created_at\": \"2026-04-28 21:09:50.718 -0500\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{USERS_API}}{{PERSONAS_ENDPOINT}}/:id",
+              "host": [
+                "{{USERS_API}}{{PERSONAS_ENDPOINT}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "b1a7e1e0-1a2b-4c3d-8e9f-000000000024"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Persona (soft-delete)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{USERS_API}}{{PERSONAS_ENDPOINT}}/:id",
+              "host": [
+                "{{USERS_API}}{{PERSONAS_ENDPOINT}}"
+              ],
+              "path": [
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "019dd71b-055a-752d-9b78-df859c0c5531"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Clientes",
+      "item": [
+        {
+          "name": "Registrar Cliente",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"personaId\": \"b1a7e1e0-1a2b-4c3d-8e9f-000000000020\",\r\n  \"contrasena\": \"segura123\",\r\n  \"estado\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{USERS_API}}{{CLIENTES_ENDPOINT}}",
+              "host": [
+                "{{USERS_API}}{{CLIENTES_ENDPOINT}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar cliente por ID",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{USERS_API}}{{CLIENTES_ENDPOINT}}/:clienteId",
+              "host": [
+                "{{USERS_API}}{{CLIENTES_ENDPOINT}}"
+              ],
+              "path": [
+                ":clienteId"
+              ],
+              "variable": [
+                {
+                  "key": "clienteId",
+                  "value": "019dd6c5-3136-7283-b8f0-7960cfe94ef6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Cliente",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"nombre\": \"Nuevo Nombre\",\r\n\t\"genero\": \"F\",\r\n\t\"edad\": 21,\r\n\t\"identificacion\": \"1002005555\",\r\n\t\"direccion\": \"Calle PRUEBA\",\r\n\t\"telefono\": \"999-98765\",\r\n\t\"contrasena\": \"NuevaContra5eña!@\",\r\n\t\"estado\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{USERS_API}}{{CLIENTES_ENDPOINT}}/:clienteId",
+              "host": [
+                "{{USERS_API}}{{CLIENTES_ENDPOINT}}"
+              ],
+              "path": [
+                ":clienteId"
+              ],
+              "variable": [
+                {
+                  "key": "clienteId",
+                  "value": "019dd6c5-3136-7283-b8f0-7960cfe94ef6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Parcialmente Cliente",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t// \"nombre\": \"Nombre Actualizado\",\r\n\t// \"genero\": \"F\",\r\n\t// \"edad\": 27,\r\n\t// \"identificacion\": \"1002005555\",\r\n\t// \"direccion\": \"Calle PRUEBA\",\r\n\t// \"telefono\": \"999-98765\",\r\n\t// \"contrasena\": \"NuevaContra5eñ@\"\r\n\t\"estado\": true\r\n\t// \"clienteId\": \"019dd6c5-3136-7283-b8f0-0060cfe94ef0\",\r\n\t// \"created_at\": \"2026-04-28 19:48:05.615 -0500\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{USERS_API}}{{CLIENTES_ENDPOINT}}/:clienteId",
+              "host": [
+                "{{USERS_API}}{{CLIENTES_ENDPOINT}}"
+              ],
+              "path": [
+                ":clienteId"
+              ],
+              "variable": [
+                {
+                  "key": "clienteId",
+                  "value": "019dd6c5-3136-7283-b8f0-7960cfe94ef6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Cliente (soft-delete)",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{USERS_API}}{{CLIENTES_ENDPOINT}}/:clienteId",
+              "host": [
+                "{{USERS_API}}{{CLIENTES_ENDPOINT}}"
+              ],
+              "path": [
+                ":clienteId"
+              ],
+              "variable": [
+                {
+                  "key": "clienteId",
+                  "value": "019dd6c5-3136-7283-b8f0-7960cfe94ef6"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cuentas",
+      "item": [
+        {
+          "name": "Consultar Cuenta por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BANK_API}}{{CUENTAS_ENDPOINT}}/:cuentaId",
+              "host": [
+                "{{BANK_API}}{{CUENTAS_ENDPOINT}}"
+              ],
+              "path": [
+                ":cuentaId"
+              ],
+              "variable": [
+                {
+                  "key": "cuentaId",
+                  "value": "019ddaa8-66c5-7031-be09-030fc8b8e1c8"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Cuenta",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"clienteId\": \"019ddaa5-c7d8-7adb-9c1e-5ff55d4fd527\",\r\n  \"numeroCuenta\": \"1002003005\",\r\n  \"tipoCuenta\": \"Corriente\",\r\n  \"saldoInicial\": 1000.0005250,\r\n  \"estado\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BANK_API}}{{CUENTAS_ENDPOINT}}",
+              "host": [
+                "{{BANK_API}}{{CUENTAS_ENDPOINT}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Cuentas de Cliente por ID de Cliente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BANK_API}}{{LISTAR_CUENTAS_ENDPOINT}}/:clienteId",
+              "host": [
+                "{{BANK_API}}{{LISTAR_CUENTAS_ENDPOINT}}"
+              ],
+              "path": [
+                ":clienteId"
+              ],
+              "variable": [
+                {
+                  "key": "clienteId",
+                  "value": "019ddacf-400a-77f8-bb30-8d4892a1d1b5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Cuenta",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"tipoCuenta\": \"ahorros\",\r\n  \"saldoInicial\": 3.0,\r\n  \"estado\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BANK_API}}{{CUENTAS_ENDPOINT}}/:cuentaId",
+              "host": [
+                "{{BANK_API}}{{CUENTAS_ENDPOINT}}"
+              ],
+              "path": [
+                ":cuentaId"
+              ],
+              "variable": [
+                {
+                  "key": "cuentaId",
+                  "value": "019ddaa8-49c6-7e49-a088-bc857570eac2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Parcialmente Cuenta",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"tipoCuenta\": \"Corriente\"\r\n//   \"saldoInicial\": \"39.015123\",\r\n//   \"estado\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BANK_API}}{{CUENTAS_ENDPOINT}}/:cuentaId",
+              "host": [
+                "{{BANK_API}}{{CUENTAS_ENDPOINT}}"
+              ],
+              "path": [
+                ":cuentaId"
+              ],
+              "variable": [
+                {
+                  "key": "cuentaId",
+                  "value": "019ddaa8-49c6-7e49-a088-bc857570eac2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Cliente (soft-delete)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BANK_API}}{{CUENTAS_ENDPOINT}}/:cuentaId",
+              "host": [
+                "{{BANK_API}}{{CUENTAS_ENDPOINT}}"
+              ],
+              "path": [
+                ":cuentaId"
+              ],
+              "variable": [
+                {
+                  "key": "cuentaId",
+                  "value": "019ddaac-cffe-7039-8592-d86e76f98939"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Movimientos",
+      "item": [
+        {
+          "name": "Crear Movimiento",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cuentaId\": \"019ddb08-a99e-777f-9471-dbed726c971a\",\r\n  \"tipoMovimiento\": \"Retiro\",\r\n  \"valor\": -521\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}",
+              "host": [
+                "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar Movimiento por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}/:movimientoId",
+              "host": [
+                "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}"
+              ],
+              "path": [
+                ":movimientoId"
+              ],
+              "variable": [
+                {
+                  "key": "movimientoId",
+                  "value": "019ddb13-a995-7659-a192-7cac010dfd3f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Movimientos de una Cuenta por cuentaId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BANK_API}}{{LISTAR_MOVIMIENTOS_ENDPOINT}}/:cuentaId",
+              "host": [
+                "{{BANK_API}}{{LISTAR_MOVIMIENTOS_ENDPOINT}}"
+              ],
+              "path": [
+                ":cuentaId"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "size",
+                  "value": "2",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "startDate",
+                  "value": "2026-04-01T00:00:00Z",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "endDate",
+                  "value": "2026-04-01T00:00:00Z",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "tipoMovimiento",
+                  "value": "Depósito",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "cuentaId",
+                  "value": "019ddb08-a99e-777f-9471-dbed726c971a"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Movimiento",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"tipoMovimiento\": \"Retiro\",\r\n  \"valor\": -20,\r\n  \"saldo\": 1300,\r\n  \"estado\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}/:movimientoId",
+              "host": [
+                "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}"
+              ],
+              "path": [
+                ":movimientoId"
+              ],
+              "variable": [
+                {
+                  "key": "movimientoId",
+                  "value": "019ddb09-c822-77dd-a605-e545a44a0542"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Parcialmente Movimiento",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"tipoMovimiento\": \"Depósito\",\r\n    \"valor\": 92.33\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}/:movimientoId",
+              "host": [
+                "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}"
+              ],
+              "path": [
+                ":movimientoId"
+              ],
+              "variable": [
+                {
+                  "key": "movimientoId",
+                  "value": "019ddb09-c822-77dd-a605-e545a44a0542"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Movimiento (soft-delete)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}/:movimientoId",
+              "host": [
+                "{{BANK_API}}{{MOVIMIENTOS_ENDPOINT}}"
+              ],
+              "path": [
+                ":movimientoId"
+              ],
+              "variable": [
+                {
+                  "key": "movimientoId",
+                  "value": "019ddb09-c822-77dd-a605-e545a44a0542"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reportes",
+      "item": [
+        {
+          "name": "Generar Reporte con Rango de Fechas y ClienteId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BANK_API}}{{REPORTES_ENDPOINT}}?fecha=2026-04-20,2026-04-29&clienteId=019ddb08-181c-74a8-a8a3-583c88d5f47d",
+              "host": [
+                "{{BANK_API}}{{REPORTES_ENDPOINT}}"
+              ],
+              "query": [
+                {
+                  "key": "fecha",
+                  "value": "2026-04-20,2026-04-29"
+                },
+                {
+                  "key": "clienteId",
+                  "value": "019ddb08-181c-74a8-a8a3-583c88d5f47d",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "localhost:8080",
+      "value": ""
+    },
+    {
+      "key": "BASE_URL",
+      "value": ""
+    },
+    {
+      "key": "USERS_API",
+      "value": ""
+    },
+    {
+      "key": "PERSONAS_ENDPOINT",
+      "value": ""
+    },
+    {
+      "key": "CLIENTES_ENDPOINT",
+      "value": ""
+    },
+    {
+      "key": "BANK_API",
+      "value": ""
+    },
+    {
+      "key": "CUENTAS_ENDPOINT",
+      "value": ""
+    },
+    {
+      "key": "LISTAR_CUENTAS_ENDPOINT",
+      "value": ""
+    },
+    {
+      "key": "MOVIMIENTOS_ENDPOINT",
+      "value": ""
+    },
+    {
+      "key": "CUENTA_ENDPOINT",
+      "value": ""
+    },
+    {
+      "key": "LISTAR_MOVIMIENTOS_ENDPOINT",
+      "value": ""
+    },
+    {
+      "key": "REPORTES_ENDPOINT",
+      "value": ""
+    }
+  ]
+}
