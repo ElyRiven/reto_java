@@ -2,6 +2,9 @@ HELP.md
 .gradle
 build/
 .github/
+.env
+test_data.sql
+docs/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/

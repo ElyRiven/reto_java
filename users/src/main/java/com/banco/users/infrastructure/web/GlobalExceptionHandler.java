@@ -1,0 +1,58 @@
+package com.banco.users.infrastructure.web;
+
+import com.banco.users.domain.exception.ClienteNoEncontradoException;
+import com.banco.users.domain.exception.ClienteYaExisteException;
+import com.banco.users.domain.exception.PersonaNotFoundException;
+import com.banco.users.domain.exception.PersonaYaExisteException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.time.Instant;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(PersonaNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handlePersonaNotFound(PersonaNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorBody(ex.getMessage()));
+    }
+
+    @ExceptionHandler(PersonaYaExisteException.class)
+    public ResponseEntity<Map<String, Object>> handlePersonaYaExiste(PersonaYaExisteException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorBody(ex.getMessage()));
+    }
+
+    @ExceptionHandler(ClienteNoEncontradoException.class)
+    public ResponseEntity<Map<String, Object>> handleClienteNotFound(ClienteNoEncontradoException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorBody(ex.getMessage()));
+    }
+
+    @ExceptionHandler(ClienteYaExisteException.class)
+    public ResponseEntity<Map<String, Object>> handleClienteYaExiste(ClienteYaExisteException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorBody(ex.getMessage()));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, Object>> handleValidation(MethodArgumentNotValidException ex) {
+        var errors = ex.getBindingResult().getFieldErrors().stream()
+                .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                "timestamp", Instant.now(),
+                "status", HttpStatus.BAD_REQUEST.value(),
+                "errors", errors
+        ));
+    }
+
+    private Map<String, Object> errorBody(String message) {
+        return Map.of(
+                "timestamp", Instant.now(),
+                "message", message
+        );
+    }
+}
